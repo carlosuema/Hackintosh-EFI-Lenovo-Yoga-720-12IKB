@@ -1,0 +1,119 @@
+# Created by Bat.bat(williambj1) 2019-08-21
+# Battery_Lenovo_Yoga_720-12IKB.txt
+
+# works for:
+# Lenovo Yoga 720-12IKB (7500U)
+
+# 16-bit registers
+into device label H_EC code_regex BTP1,\s+16, replace_matched begin BT0P,8,BT1P,8, end;
+into device label H_EC code_regex B1FC,\s+16, replace_matched begin B1F0,8,B1F1,8, end;
+into device label H_EC code_regex B1RM,\s+16, replace_matched begin B1R0,8,B1R1,8, end;
+into device label H_EC code_regex B1VT,\s+16, replace_matched begin B1V0,8,B1V1,8, end;
+into device label H_EC code_regex B1CR,\s+16, replace_matched begin B1C0,8,B1C1,8, end;
+into device label H_EC code_regex SDAT,\s+16, replace_matched begin SDT0,8,SDT1,8, end;
+into device label H_EC code_regex SDA2,\s+16, replace_matched begin SD20,8,SD21,8, end;
+into device label H_EC code_regex B1DC,\s+16, replace_matched begin BDC0,8,BDC1,8, end;
+into device label H_EC code_regex B1DT,\s+16, replace_matched begin BDT0,8,BDT1,8, end;
+
+# fix 16-bit methods
+into_all method parent_label BAT1 code_regex ECRD\s\(RefOf\s\(B1FC\)\) replaceall_matched begin B1B2(B1F0,B1F1) end;
+into_all method parent_label BAT1 code_regex ECRD\s\(RefOf\s\(B1RM\)\) replaceall_matched begin B1B2(B1R0,B1R1) end;
+into_all method parent_label BAT1 code_regex ECRD\s\(RefOf\s\(B1VT\)\) replaceall_matched begin B1B2(B1V0,B1V1) end;
+into_all method parent_label BAT1 code_regex ECRD\s\(RefOf\s\(B1CR\)\) replaceall_matched begin B1B2(B1C0,B1C1) end;
+into_all method parent_label BAT1 code_regex ECRD\s\(RefOf\s\(SDAT\)\) replaceall_matched begin B1B2(SDT0,SDT1) end;
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(B1FC\)\) replaceall_matched begin B1B2(B1F0,B1F1) end;
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(SDAT\)\) replaceall_matched begin B1B2(SDT0,SDT1) end;
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(SDA2\)\) replaceall_matched begin B1B2(SD20,SD21) end;
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(B1DC\)\) replaceall_matched begin B1B2(BDC0,BDC1) end;
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(B1DT\)\) replaceall_matched begin B1B2(BDT0,BDT1) end;
+
+into_all method parent_label BAT1 code_regex ECWT\s\(Divide\s\(Arg0,\s0x0A,\s\),\sRefOf\s\(BTP1\)\) replaceall_matched begin Store\(Divide\(Arg0,0x0A,\),B1B2\(BT0P,BT1P\)\) end;
+
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDAT\)\) replaceall_matched begin B1B2(\\_SB.PCI0.LPCB.H_EC.SDT0,\\_SB.PCI0.LPCB.H_EC.SDT1) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA2\)\) replaceall_matched begin B1B2(\\_SB.PCI0.LPCB.H_EC.SD20,\\_SB.PCI0.LPCB.H_EC.SD21) end;
+
+into_all method parent_label VPC0 code_regex Store\s\(DAT0,\sSDAT\) replaceall_matched begin WECB (0x64, 0x20, DAT0) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT2,\sSDA2\) replaceall_matched begin WECB (0x66, 0x20, DAT2) end;
+
+into_all method parent_label VPC0 code_regex \(SDAT, replaceall_matched begin (B1B2(SDT0,SDT1), end;
+into_all method parent_label VPC0 code_regex \(SDA2, replaceall_matched begin (B1B2(SD20,SD21), end;
+
+# 32-bit registers
+into device label H_EC code_regex SDA4,\s+32 replace_matched begin SD40,8,SD41,8,SD42,8,SD43,8 end;
+into device label H_EC code_regex SDA5,\s+32 replace_matched begin SD50,8,SD51,8,SD52,8,SD53,8 end;
+into device label H_EC code_regex SDA6,\s+32 replace_matched begin SD60,8,SD61,8,SD62,8,SD63,8 end;
+into device label H_EC code_regex SDA7,\s+32 replace_matched begin SD70,8,SD71,8,SD72,8,SD73,8 end;
+into device label H_EC code_regex SDA8,\s+32 replace_matched begin SD80,8,SD81,8,SD82,8,SD83,8 end;
+into device label H_EC code_regex SDA9,\s+32 replace_matched begin SD90,8,SD91,8,SD92,8,SD93,8 end;
+into device label H_EC code_regex SDAA,\s+32 replace_matched begin S0AA,8,S1AA,8,S2AA,8,S3AA,8 end;
+
+# fix 32-bit methods
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA4\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD40,\\_SB.PCI0.LPCB.H_EC.SD41,\\_SB.PCI0.LPCB.H_EC.SD42,\\_SB.PCI0.LPCB.H_EC.SD43) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA5\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD50,\\_SB.PCI0.LPCB.H_EC.SD51,\\_SB.PCI0.LPCB.H_EC.SD52,\\_SB.PCI0.LPCB.H_EC.SD53) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA6\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD60,\\_SB.PCI0.LPCB.H_EC.SD61,\\_SB.PCI0.LPCB.H_EC.SD62,\\_SB.PCI0.LPCB.H_EC.SD63) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA7\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD70,\\_SB.PCI0.LPCB.H_EC.SD71,\\_SB.PCI0.LPCB.H_EC.SD72,\\_SB.PCI0.LPCB.H_EC.SD73) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA8\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD80,\\_SB.PCI0.LPCB.H_EC.SD81,\\_SB.PCI0.LPCB.H_EC.SD82,\\_SB.PCI0.LPCB.H_EC.SD83) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDA9\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.SD90,\\_SB.PCI0.LPCB.H_EC.SD91,\\_SB.PCI0.LPCB.H_EC.SD92,\\_SB.PCI0.LPCB.H_EC.SD93) end;
+into method label \SM2S code_regex \\_SB\.PCI0\.LPCB\.H_EC\.ECRD\s\(RefOf\s\(\\_SB\.PCI0\.LPCB\.H_EC\.SDAA\)\) replaceall_matched begin B1B4(\\_SB.PCI0.LPCB.H_EC.S0AA,\\_SB.PCI0.LPCB.H_EC.S1AA,\\_SB.PCI0.LPCB.H_EC.S2AA,\\_SB.PCI0.LPCB.H_EC.S3AA) end;
+
+into_all method parent_label VPC0 code_regex Store\s\(DAT4,\sSDA4\) replaceall_matched begin WECB (0x68, 0x20, DAT4) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT5,\sSDA5\) replaceall_matched begin WECB (0x6C, 0x20, DAT5) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT6,\sSDA6\) replaceall_matched begin WECB (0x70, 0x20, DAT6) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT7,\sSDA7\) replaceall_matched begin WECB (0x74, 0x20, DAT7) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT8,\sSDA8\) replaceall_matched begin WECB (0x78, 0x20, DAT8) end;
+into_all method parent_label VPC0 code_regex Store\s\(DAT9,\sSDA9\) replaceall_matched begin WECB (0x7C, 0x20, DAT9) end;
+into_all method parent_label VPC0 code_regex Store\s\(DATA,\sSDAA\) replaceall_matched begin WECB (0x80, 0x20, DATA) end;
+
+into_all method parent_label VPC0 code_regex \(SDA4, replaceall_matched begin (B1B4(SD40,SD41,SD42,SD43), end;
+into_all method parent_label VPC0 code_regex \(SDA5, replaceall_matched begin (B1B4(SD50,SD51,SD52,SD53), end;
+into_all method parent_label VPC0 code_regex \(SDA6, replaceall_matched begin (B1B4(SD60,SD61,SD62,SD63), end;
+into_all method parent_label VPC0 code_regex \(SDA7, replaceall_matched begin (B1B4(SD70,SD71,SD72,SD73), end;
+into_all method parent_label VPC0 code_regex \(SDA8, replaceall_matched begin (B1B4(SD80,SD81,SD82,SD83), end;
+into_all method parent_label VPC0 code_regex \(SDA9, replaceall_matched begin (B1B4(SD90,SD91,SD92,SD93), end;
+into_all method parent_label VPC0 code_regex \(SDAA, replaceall_matched begin (B1B4(S0AA,S1AA,S2AA,S3AA), end;
+
+into_all method parent_label VPC0 code_regex ECRD\s\(RefOf\s\(SDA4\)\) replaceall_matched begin B1B4(SD40,SD41,SD42,SD43) end;
+
+# add methods
+into method label B1B2 remove_entry;
+into definitionblock code_regex . insert
+begin
+Method (B1B2, 2, NotSerialized) { Return(Or(Arg0, ShiftLeft(Arg1, 8))) }\n
+end;
+
+into method label B1B4 remove_entry;
+into definitionblock code_regex . insert
+begin
+Method (B1B4, 4, NotSerialized)\n
+{\n
+    Store(Arg3, Local0)\n
+    Or(Arg2, ShiftLeft(Local0, 8), Local0)\n
+    Or(Arg1, ShiftLeft(Local0, 8), Local0)\n
+    Or(Arg0, ShiftLeft(Local0, 8), Local0)\n
+    Return(Local0)\n
+}\n
+end;
+
+into device label H_EC insert
+begin
+Method (WE1B, 2, NotSerialized)\n
+{\n
+    OperationRegion(ERAM, EmbeddedControl, Arg0, 1)\n
+    Field(ERAM, ByteAcc, NoLock, Preserve) { BYTE, 8 }\n
+    Store(Arg1, BYTE)\n
+}\n
+Method (WECB, 3, Serialized)\n
+{\n
+    ShiftRight(Arg1, 3, Arg1)\n
+    Name(TEMP, Buffer(Arg1) { })\n
+    Store(Arg2, TEMP)\n
+    Add(Arg0, Arg1, Arg1)\n
+    Store(0, Local0)\n
+    While (LLess(Arg0, Arg1))\n
+    {\n
+        WE1B(Arg0, DerefOf(Index(TEMP, Local0)))\n
+        Increment(Arg0)\n
+        Increment(Local0)\n
+    }\n
+}\n
+end;
