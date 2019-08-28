@@ -13,18 +13,10 @@ Download [ResXtreme](https://github.com/williambj1/Hackintosh-EFI-Lenovo-Yoga-72
 
 ## HIDPI (Temp)
 
-### English
-
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh)"
 ```
 
 Don't forget to click a [Star](https://github.com/xzhih/one-key-hidpi) for the author
-
-### 中文
-
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh)"
-```
 
 别忘了给作者点一个 [Star](https://github.com/xzhih/one-key-hidpi)
