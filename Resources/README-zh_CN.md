@@ -6,7 +6,7 @@
 
 一个 **联想 Yoga 720-12IKB** 的初始 EFI
 
-[ENGLISH](https://github.com/williambj1/Hackintosh-EFI-Lenovo-Yoga-720-12IKB/tree/master/README.md) | 简体中文
+[ENGLISH](https://github.com/williambj1/Hackintosh-EFI-Lenovo-Yoga-720-12IKB/tree/master/README.md) | **简体中文**
 
 本 EFI 适用于 [联想 Yoga 720-12IKB](https://www.lenovo.com/us/en/laptops/yoga/700-series/Yoga-720-12/p/88YG7000919)
 
@@ -32,7 +32,7 @@
 | ----- | ------------------------------------ |
 | 型号   | Lenovo Yoga 720-12IKB                |
 | 处理器 | Intel(R) Core(TM) i7 7500U @ 2.70GHz |
-| 内存   | 8 GB  2233 MHz 单通道                 |
+| 内存   | 8 GB  2133 MHz 单通道                 |
 | 硬盘   | LITEON CV3-8D128 (SATA) 128GB        |
 | 显卡   | Intel HD Graphics 620                |
 | 声卡   | Conexant CX20751 (LayoutID 21)       |
@@ -65,7 +65,7 @@
 
 ## 特别感谢
 
-- [Daliansky](https://github.com/daliansky) 的安装 Dmg，config 文件和博客上的精彩文章
+- [Daliansky](https://github.com/daliansky) 的安装 dmg，config 文件和博客上的精彩文章
 - [Headkaze](https://github.com/headkaze) 的实用工具 Hackintool
 - 联想小新 QQ 群的群友对联想机型特征的指导
 - 宪武 在 ACPI 方面的指导

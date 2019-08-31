@@ -6,7 +6,7 @@
 
 An Initial Hackintosh EFI for **Lenovo Yoga 720-12IKB**
 
-ENGLISH | [简体中文](https://github.com/williambj1/Hackintosh-EFI-Lenovo-Yoga-720-12IKB/blob/master/Resources/README-zh_CN.md)
+**ENGLISH** | [简体中文](https://github.com/williambj1/Hackintosh-EFI-Lenovo-Yoga-720-12IKB/blob/master/Resources/README-zh_CN.md)
 
 This EFI is suitable for [Lenovo Yoga 720-12IKB](https://www.lenovo.com/us/en/laptops/yoga/700-series/Yoga-720-12/p/88YG7000919)
 
@@ -32,7 +32,7 @@ Please visit the [Resources Folder](https://github.com/williambj1/Hackintosh-EFI
 | -------------- | ------------------------------------ |
 | Computer Model | Lenovo Yoga 720-12IKB                |
 | Processor      | Intel(R) Core(TM) i7 7500U @ 2.70GHz |
-| Memory         | 8 GB  2233 MHz Single Channel        |
+| Memory         | 8 GB  2133 MHz Single Channel        |
 | Hard Disk      | LITEON CV3-8D128 (SATA) 128GB        |
 | Graphics Card  | Intel HD Graphics 620                |
 | Sound Card     | Conexant CX20751 (LayoutID 21)       |
@@ -65,10 +65,10 @@ Please visit the [Resources Folder](https://github.com/williambj1/Hackintosh-EFI
 
 ## Special Thanks
 
-- [Daliansky](https://github.com/daliansky) for his macOS installation Dmg, configs and his awesome blog
+- [Daliansky](https://github.com/daliansky) for his macOS installation dmg, configs and his awesome blog
 - [Headkaze](https://github.com/headkaze) for the awesome Hackintool
 - Group members from Lenovo Air 13 for giving me lots of details and tricks for Lenovo Laptop Hackintosh
-- 宪武 for helping me in ACPI patches
+- 宪武 for helping me with ACPI patches
 
 ## Credits
 
